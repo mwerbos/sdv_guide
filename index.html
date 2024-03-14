@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+Hello World
+
+<form id="checkboxForm">
+    <!-- Checkboxes will be added here -->
+</form>
+
+<script>
+// List of checkbox names
+const checkboxNames = ['checkbox1', 'checkbox2', 'checkbox3'];
+
+// Function to create checkboxes dynamically
+function createCheckboxes() {
+    const form = document.getElementById('checkboxForm');
+
+    checkboxNames.forEach(name => {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('pretty-checkbox');
+
+        const checkboxElement = document.createElement('input');
+        checkboxElement.type = 'checkbox';
+        checkboxElement.id = name;
+        checkboxElement.name = name;
+        checkboxElement.class = 'pretty-checkbox';
+        checkboxElement.checked = JSON.parse(localStorage.getItem(name)) || false;
+
+        const label = document.createElement('label');
+        label.htmlFor = name;
+        label.appendChild(document.createTextNode(name));
+
+        wrapper.appendChild(checkboxElement);
+        wrapper.appendChild(label);
+
+        form.appendChild(wrapper);
+
+        // Add event listener to save checkbox state in localStorage
+        checkboxElement.addEventListener('change', function() {
+            localStorage.setItem(name, this.checked);
+        });
+    });
+}
+
+// Create checkboxes when the page loads
+window.onload = createCheckboxes;
+</script>
+
+</body>
+</html>
