@@ -6,7 +6,7 @@ background-color: #eee;
 padding-top: 0px;
 }
 
-.pretty-checkbox {
+.pretty-checkbox + label {
 border: 1px solid black;
 margin: 0.5em;
 padding: 0.5em;
@@ -14,7 +14,7 @@ border-radius: 0.2em;
 width: fit-content;
 }
 
-.pretty-checkbox input {
+.pretty-checkbox {
 margin-right: 1em;
 }
 
