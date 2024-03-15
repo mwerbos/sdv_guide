@@ -31,12 +31,7 @@ class CheckboxElement extends React.Component {
 
 	render() {
 		return (<li
-			className="pretty-li"
-			style={{
-				color: this.props.fgColor,
-				backgroundColor: this.props.bgColor,
-				borderColor: this.props.fgColor
-			}}>
+			className="pretty-li">
 				<input type="checkbox"
 					id={this.id}
 					name={this.props.labelText}
@@ -44,7 +39,14 @@ class CheckboxElement extends React.Component {
 					checked={this.state.checked}
           className="pretty-checkbox"
 				></input>
-				<label htmlFor={this.id}>{this.props.labelText}</label>
+				<label
+          htmlFor={this.id}
+          style={{
+            color: this.props.fgColor,
+            backgroundColor: this.props.bgColor,
+            borderColor: this.props.fgColor
+          }}>
+        {this.props.labelText}</label>
 		</li>);
 	}
 }
