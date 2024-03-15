@@ -1,54 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+
 <link href="style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-Hello World
 
 <form id="checkboxForm">
     <!-- Checkboxes will be added here -->
 </form>
 
 <script>
-// List of checkbox names
-const checkboxNames = ['checkbox1', 'checkbox2', 'checkbox3'];
+const bundles = [
+    {
+        heading: 'Spring Foraging Bundle',
+        items: ['Wild Horseradish', 'Daffodil', 'Leek', 'Dandelion']
+    },
+    {
+        heading: 'Summer Foraging Bundle',
+        items: ['Grape', 'Spice Berry', 'Sweet Pea']
+    },
+    {
+        heading: 'Fall Foraging Bundle',
+        items: ['Common Mushroom', 'Wild Plum', 'Hazelnut', 'Blackberry']
+    },
+    {
+        heading: 'Winter Foraging Bundle',
+        items: ['Winter Root', 'Crystal Fruit', 'Snow Yam', 'Crocus']
+    },
+    {
+        heading: 'Construction Bundle',
+        items: ['Wood', 'Wood (hardwood)', 'Stone', 'Sap']
+    },
+    {
+        heading: 'Exotic Foraging Bundle',
+        items: ['Coconut', 'Cactus Fruit', 'Cave Carrot', 'Red Mushroom']
+    },
+    {
+        heading: "Chef's Bundle",
+        items: ['Maple Syrup', 'Fiddlehead Fern', 'Truffle', 'Poppy', 'Maki Roll (recipe)']
+    },
+    {
+        heading: 'Dye Bundle',
+        items: ['Red Mushroom', 'Sea Urchin', 'Sunflower', 'Duck Feather']
+    },
+    {
+        heading: 'Field Research Bundle',
+        items: ['Nautilus Shell', 'Chipped Amphora', 'Arrowhead', 'Rusty Cog']
+    },
+    {
+        heading: "Enchanter's Bundle",
+        items: ['Oak Resin', 'Wine', "Rabbit's Foot"]
+    },
+    {
+        heading: 'Fodder Bundle',
+        items: ['Wheat', 'Hay', 'Apple']
+    },
+    {
+        heading: 'Quality Crops Bundle',
+        items: ['Parsnip (Gold Star)', 'Melon (Gold Star)', 'Pumpkin (Gold Star)', 'Corn (Gold Star)']
+    },
+    {
+        heading: 'Animal Bundle',
+        items: ['Large Milk', 'Large Egg (Brown)', 'Large Egg (White)', 'Large Goat Milk', 'Wool']
+    },
+    {
+        heading: 'Artisan Bundle',
+        items: ['Jelly', 'Apple', 'Cheese', 'Truffle Oil', 'Goat Cheese', 'Cloth', 'Honey', 'Apricot', 'Orange', 'Peach', 'Pomegranate', 'Cherry']
+    },
+    {
+        heading: "Adventurer's Bundle",
+        items: ['Void Essence', 'Solar Essence', 'Earth Crystal', 'Frozen Tear']
+    }
+];
 
-// Function to create checkboxes dynamically
-function createCheckboxes() {
-    const form = document.getElementById('checkboxForm');
+function createCheckboxes(parentNode, checkboxList) {
+    checkboxList.forEach(item => {
+        if (typeof item === 'string') {
+            createCheckbox(parentNode, item);
+        } else if (typeof item === 'object') {
+            const heading = item.heading;
+            const items = item.items;
 
-    checkboxNames.forEach(name => {
-        const wrapper = document.createElement('div');
-        wrapper.classList.add('pretty-checkbox');
-
-        const checkboxElement = document.createElement('input');
-        checkboxElement.type = 'checkbox';
-        checkboxElement.id = name;
-        checkboxElement.name = name;
-        checkboxElement.class = 'pretty-checkbox';
-        checkboxElement.checked = JSON.parse(localStorage.getItem(name)) || false;
-
-        const label = document.createElement('label');
-        label.htmlFor = name;
-        label.appendChild(document.createTextNode(name));
-
-        wrapper.appendChild(checkboxElement);
-        wrapper.appendChild(label);
-
-        form.appendChild(wrapper);
-
-        // Add event listener to save checkbox state in localStorage
-        checkboxElement.addEventListener('change', function() {
-            localStorage.setItem(name, this.checked);
-        });
+            const headingCheckbox = createCheckbox(parentNode, heading);
+            const subParentNode = document.createElement('div');
+            parentNode.appendChild(subParentNode);
+            createCheckboxes(subParentNode, items);
+        }
     });
 }
 
-// Create checkboxes when the page loads
-window.onload = createCheckboxes;
+function createCheckbox(parentNode, labelText) {
+		const wrapper = document.createElement('div');
+		wrapper.classList.add('pretty-checkbox');
+
+    const checkboxElement = document.createElement('input');
+    checkboxElement.type = 'checkbox';
+    checkboxElement.id = labelText.toLowerCase().replace(/\s/g, '');
+    checkboxElement.name = labelText;
+
+    const label = document.createElement('label');
+    label.htmlFor = labelText.toLowerCase().replace(/\s/g, '');
+    label.appendChild(document.createTextNode(labelText));
+
+		wrapper.appendChild(checkboxElement);
+		wrapper.appendChild(label);
+    parentNode.appendChild(wrapper);
+}
+
+window.onload = function() {
+    createCheckboxes(document.getElementById('checkboxForm'), bundles);
+};
+
 </script>
 
 </body>

@@ -1,3 +1,29 @@
+body {
+font-family: "Madimi One", sans-serif;
+font-weight: 400;
+font-style: normal;
+background-color: #eee;
+padding-top: 0px;
+}
+
 .pretty-checkbox {
-border: 1px solid red;
+border: 1px solid black;
+margin: 0.5em;
+padding: 0.5em;
+border-radius: 0.2em;
+width: fit-content;
+}
+
+.pretty-checkbox input {
+margin-right: 1em;
+}
+
+#checkboxForm {
+max-width: 30em;
+margin-left: auto;
+margin-right: auto;
+background-color: #fff;
+margin-top: -10px;
+margin-bottom: -10px;
+border: 1px solid #bbb;
 }
