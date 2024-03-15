@@ -44,15 +44,49 @@ class CheckboxElement extends React.Component {
 	}
 }
 
+class RecursiveCheckboxContainer extends React.Component {
+	constructor(props) {
+		// this.props.container
+		// this.props.localStoragePath
+		super(props);
+		console.log('Creating recursive checkbox container');
+		console.log(this.props.container);
+		console.log(this.props.container);
+	}
+
+	render() {
+		const topLevelStoragePath = this.props.localStoragePath;
+		let ulClassName = this.props.topLevel ? "checkbox-ul-toplevel" : "checkbox-ul";
+		return (<ul className={ulClassName}>
+			{this.props.container.map((item) => {
+				if (typeof item === 'string') {
+					// TODO: refactor so we don't repeat this inside CheckboxElement.
+					let storagePath = topLevelStoragePath.concat([item.toLowerCase().replace(/\s/g, '')]);
+					return <CheckboxElement labelText={item} localStoragePath={storagePath} fgColor={this.props.fgColor} bgColor={this.props.bgColor} />;
+				} else if (typeof item === 'object') {
+					// TODO: refactor so we don't repeat this inside CheckboxElement.
+					let headingId = item.heading.toLowerCase().replace(/\s/g, '');
+					let storagePath = topLevelStoragePath.concat([headingId]);
+					return (<div className="recursive-div">
+						<CheckboxElement labelText={item.heading} localStoragePath={storagePath} fgColor={item.fgColor} bgColor={item.bgColor} />
+						<RecursiveCheckboxContainer container={item.items} localStoragePath={storagePath} fgColor={item.fgColor} bgColor={item.bgColor} />
+					</div>);
+				} else {
+					console.log('WHOOPS');
+				}
+			})}
+		</ul>);
+	}
+}
+
 class MainContainer extends React.Component {
   constructor(props) {
     super(props);
 	}
 
 	render() {
-		return (<div>
-			<h1>Hello, World!! I am a React container!!</h1>
-			<CheckboxElement fgColor="#f00" bgColor="#000" labelText="Test Checkbox" localStoragePath={["Test Checkbox"]} />
+		return (<div id="checkbox-wrapper">
+			<RecursiveCheckboxContainer topLevel={true} container={bundles} localStoragePath={[]} />
 		</div>);
 	}
 }

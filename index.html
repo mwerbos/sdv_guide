@@ -16,10 +16,6 @@
 
 <div id="react_container"></div>
 
-<ul id="checkboxForm">
-    <!-- Checkboxes will be added here -->
-</ul>
-
 <!-- Load React. -->
 <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
 <script
@@ -30,53 +26,9 @@
 	src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
 	crossorigin
 ></script>
+
 <script type="text/javascript" src="shared.js"></script>
 <script type="text/javascript" src="bundles.js"></script>
-<script>
-function createCheckboxes(parentNode, checkboxList, bgColor, fgColor) {
-    checkboxList.forEach(item => {
-        if (typeof item === 'string') {
-            createCheckbox(parentNode, item, bgColor, fgColor);
-        } else if (typeof item === 'object') {
-            const heading = item.heading;
-            const items = item.items;
-
-            const headingCheckbox = createCheckbox(parentNode, heading, item.bgColor, item.fgColor);
-            const subParentNode = document.createElement('ul');
-            parentNode.appendChild(subParentNode);
-            createCheckboxes(subParentNode, items, item.bgColor, item.fgColor);
-        }
-    });
-}
-
-// creates an li, parent node should be a ul
-function createCheckbox(parentNode, labelText, bgColor, fgColor) {
-		const wrapper = document.createElement('li');
-		wrapper.classList.add('pretty-checkbox');
-		wrapper.style.color = fgColor;
-		wrapper.style.borderColor = fgColor;
-		wrapper.style.backgroundColor = bgColor;
-
-    const checkboxElement = document.createElement('input');
-    checkboxElement.type = 'checkbox';
-    checkboxElement.id = labelText.toLowerCase().replace(/\s/g, '');
-    checkboxElement.name = labelText;
-
-    const label = document.createElement('label');
-    label.htmlFor = labelText.toLowerCase().replace(/\s/g, '');
-    label.appendChild(document.createTextNode(labelText));
-
-		wrapper.appendChild(checkboxElement);
-		wrapper.appendChild(label);
-    parentNode.appendChild(wrapper);
-}
-
-window.onload = function() {
-    createCheckboxes(document.getElementById('checkboxForm'), bundles);
-};
-
-</script>
-<!-- Load our React component. -->
 <script type="text/babel" src="sdv.jsx"></script>
 
 </body>

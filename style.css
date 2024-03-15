@@ -18,7 +18,7 @@ width: fit-content;
 margin-right: 1em;
 }
 
-#checkboxForm {
+#checkbox-wrapper {
 max-width: 30em;
 margin-left: auto;
 margin-right: auto;
@@ -30,4 +30,11 @@ padding-left: 0.5em;
 }
 ul {
 list-style-type: none;
+}
+.checkbox-ul {
+}
+.checkbox-ul-toplevel {
+padding-left: 0px;
+}
+.recursive-div {
 }
