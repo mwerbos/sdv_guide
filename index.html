@@ -17,88 +17,122 @@
 </form>
 
 <script>
+// TODO: add Bulletin Board.
 const bundles = [
     {
         heading: 'Spring Foraging Bundle',
+				bgColor: '#86FFC3',
+				fgColor: '#008040',
         items: ['Wild Horseradish', 'Daffodil', 'Leek', 'Dandelion']
     },
     {
         heading: 'Summer Foraging Bundle',
+				bgColor: '#FFDBEE',
+				fgColor: '#A300FF',
         items: ['Grape', 'Spice Berry', 'Sweet Pea']
     },
     {
         heading: 'Fall Foraging Bundle',
+				bgColor: '#FFD998',
+				fgColor: '#FF4200',
         items: ['Common Mushroom', 'Wild Plum', 'Hazelnut', 'Blackberry']
     },
     {
         heading: 'Winter Foraging Bundle',
+				bgColor: '#DBF6FF',
+				fgColor: '#00A0D8',
         items: ['Winter Root', 'Crystal Fruit', 'Snow Yam', 'Crocus']
     },
     {
         heading: 'Construction Bundle',
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Wood', 'Wood (hardwood)', 'Stone', 'Sap']
     },
     {
         heading: 'Exotic Foraging Bundle',
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Coconut', 'Cactus Fruit', 'Cave Carrot', 'Red Mushroom']
     },
     {
         heading: "Chef's Bundle",
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Maple Syrup', 'Fiddlehead Fern', 'Truffle', 'Poppy', 'Maki Roll (recipe)']
     },
     {
         heading: 'Dye Bundle',
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Red Mushroom', 'Sea Urchin', 'Sunflower', 'Duck Feather']
     },
     {
         heading: 'Field Research Bundle',
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Nautilus Shell', 'Chipped Amphora', 'Arrowhead', 'Rusty Cog']
     },
     {
         heading: "Enchanter's Bundle",
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Oak Resin', 'Wine', "Rabbit's Foot"]
     },
     {
         heading: 'Fodder Bundle',
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Wheat', 'Hay', 'Apple']
     },
     {
         heading: 'Quality Crops Bundle',
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Parsnip (Gold Star)', 'Melon (Gold Star)', 'Pumpkin (Gold Star)', 'Corn (Gold Star)']
     },
     {
         heading: 'Animal Bundle',
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Large Milk', 'Large Egg (Brown)', 'Large Egg (White)', 'Large Goat Milk', 'Wool']
     },
     {
         heading: 'Artisan Bundle',
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Jelly', 'Apple', 'Cheese', 'Truffle Oil', 'Goat Cheese', 'Cloth', 'Honey', 'Apricot', 'Orange', 'Peach', 'Pomegranate', 'Cherry']
     },
     {
         heading: "Adventurer's Bundle",
+				bgColor: '#FFFFFF',
+				fgColor: '#000000',
         items: ['Void Essence', 'Solar Essence', 'Earth Crystal', 'Frozen Tear']
     }
 ];
 
-function createCheckboxes(parentNode, checkboxList) {
+function createCheckboxes(parentNode, checkboxList, bgColor, fgColor) {
+		// TODO: use ul/li to create a tree structure.
     checkboxList.forEach(item => {
         if (typeof item === 'string') {
-            createCheckbox(parentNode, item);
+            createCheckbox(parentNode, item, bgColor, fgColor);
         } else if (typeof item === 'object') {
             const heading = item.heading;
             const items = item.items;
 
-            const headingCheckbox = createCheckbox(parentNode, heading);
+            const headingCheckbox = createCheckbox(parentNode, heading, item.bgColor, item.fgColor);
             const subParentNode = document.createElement('div');
             parentNode.appendChild(subParentNode);
-            createCheckboxes(subParentNode, items);
+            createCheckboxes(subParentNode, items, item.bgColor, item.fgColor);
         }
     });
 }
 
-function createCheckbox(parentNode, labelText) {
+function createCheckbox(parentNode, labelText, bgColor, fgColor) {
 		const wrapper = document.createElement('div');
 		wrapper.classList.add('pretty-checkbox');
+		wrapper.style.color = fgColor;
+		wrapper.style.backgroundColor = bgColor;
 
     const checkboxElement = document.createElement('input');
     checkboxElement.type = 'checkbox';
