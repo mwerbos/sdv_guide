@@ -12,9 +12,9 @@
 </head>
 <body>
 
-<form id="checkboxForm">
+<ul id="checkboxForm">
     <!-- Checkboxes will be added here -->
-</form>
+</ul>
 
 <script>
 // TODO: add Bulletin Board.
@@ -45,38 +45,38 @@ const bundles = [
     },
     {
         heading: 'Construction Bundle',
-				bgColor: '#FFFFFF',
-				fgColor: '#000000',
+				bgColor: '#FFD9A8',
+				fgColor: '#A27A46',
         items: ['Wood', 'Wood (hardwood)', 'Stone', 'Sap']
     },
     {
         heading: 'Exotic Foraging Bundle',
-				bgColor: '#FFFFFF',
-				fgColor: '#000000',
+				bgColor: '#FFF6D3',
+				fgColor: '#00A658',
         items: ['Coconut', 'Cactus Fruit', 'Cave Carrot', 'Red Mushroom']
     },
     {
         heading: "Chef's Bundle",
-				bgColor: '#FFFFFF',
-				fgColor: '#000000',
-        items: ['Maple Syrup', 'Fiddlehead Fern', 'Truffle', 'Poppy', 'Maki Roll (recipe)']
+				bgColor: '#FFDE7C',
+				fgColor: '#FF7200',
+        items: ['Maple Syrup', 'Fiddlehead Fern', 'Truffle', 'Poppy', 'Maki Roll']
     },
     {
         heading: 'Dye Bundle',
-				bgColor: '#FFFFFF',
-				fgColor: '#000000',
+				bgColor: '#FAFFA3',
+				fgColor: '#C702D8',
         items: ['Red Mushroom', 'Sea Urchin', 'Sunflower', 'Duck Feather']
     },
     {
         heading: 'Field Research Bundle',
-				bgColor: '#FFFFFF',
-				fgColor: '#000000',
+				bgColor: '#A3FFEC',
+				fgColor: '#007C65',
         items: ['Nautilus Shell', 'Chipped Amphora', 'Arrowhead', 'Rusty Cog']
     },
     {
         heading: "Enchanter's Bundle",
-				bgColor: '#FFFFFF',
-				fgColor: '#000000',
+				bgColor: '#CEFFF6',
+				fgColor: '#9100FF',
         items: ['Oak Resin', 'Wine', "Rabbit's Foot"]
     },
     {
@@ -121,17 +121,19 @@ function createCheckboxes(parentNode, checkboxList, bgColor, fgColor) {
             const items = item.items;
 
             const headingCheckbox = createCheckbox(parentNode, heading, item.bgColor, item.fgColor);
-            const subParentNode = document.createElement('div');
+            const subParentNode = document.createElement('ul');
             parentNode.appendChild(subParentNode);
             createCheckboxes(subParentNode, items, item.bgColor, item.fgColor);
         }
     });
 }
 
+// creates an li, parent node should be a ul
 function createCheckbox(parentNode, labelText, bgColor, fgColor) {
-		const wrapper = document.createElement('div');
+		const wrapper = document.createElement('li');
 		wrapper.classList.add('pretty-checkbox');
 		wrapper.style.color = fgColor;
+		wrapper.style.borderColor = fgColor;
 		wrapper.style.backgroundColor = bgColor;
 
     const checkboxElement = document.createElement('input');
