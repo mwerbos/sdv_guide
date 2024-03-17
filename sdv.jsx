@@ -60,19 +60,55 @@ class CheckboxElement extends React.Component {
   }
 }
 
-class RecursiveCheckboxContainer extends React.Component {
+class HeadingedRecursiveCheckboxyThing extends React.Component {
   constructor(props) {
-    // this.props.container
-    // this.props.localStoragePath
-    // this.props.fgColor, this.props.bgColor
+    // heading, items, topLevelStoragePath, fgColor, bgColor
     super(props);
     this.state = { collapsed: false };
     this.toggleCollapsed = this.toggleCollapsed.bind(this);
   }
 
   toggleCollapsed(event) {
-    console.log('collapsing. state: ', this.state.collapsed);
+    console.log("collapsing. state: ", this.state.collapsed);
     this.setState({ collapsed: !this.state.collapsed });
+  }
+
+  render() {
+    let headingId = makeId(this.props.heading);
+    let storagePath = this.props.topLevelStoragePath.concat([headingId]);
+    let collapseIcon = this.state.collapsed ? "►" : "▼";
+    let displayedItems = this.state.collapsed ? (
+      ""
+    ) : (
+      <RecursiveCheckboxContainer
+        container={this.props.items}
+        localStoragePath={storagePath}
+        fgColor={this.props.fgColor}
+        bgColor={this.props.bgColor}
+      />
+    );
+    return (
+      <div className="recursive-div">
+        <button onClick={this.toggleCollapsed}>{collapseIcon}</button>
+        <CheckboxElement
+          isHeader={true}
+          labelText={this.props.heading}
+          localStoragePath={storagePath.concat(["checked"])}
+          fgColor={this.props.fgColor}
+          bgColor={this.props.bgColor}
+        />
+        {displayedItems}
+      </div>
+    );
+  }
+}
+
+class RecursiveCheckboxContainer extends React.Component {
+  constructor(props) {
+    // this.props.container
+    // this.props.localStoragePath
+    // this.props.fgColor, this.props.bgColor
+    super(props);
   }
 
   render() {
@@ -98,33 +134,14 @@ class RecursiveCheckboxContainer extends React.Component {
               />
             );
           } else if (typeof item === "object") {
-            let headingId = makeId(item.heading);
-            let storagePath = topLevelStoragePath.concat([headingId]);
-            let collapseIcon = this.state.collapsed ? "►" : "▼";
-            // TODO: this doesn't work correctly because 'collapsed' is
-            // currently a property of all the same-level headings... so when
-            // you collapse the crafts room, it also collapses all the other
-            // divisions. Ugh!
-            let displayedItems = this.state.collapsed? "" : (
-                <RecursiveCheckboxContainer
-                  container={item.items}
-                  localStoragePath={storagePath}
-                  fgColor={item.fgColor}
-                  bgColor={item.bgColor}
-                />
-            );
             return (
-              <div className="recursive-div">
-                <button onClick={this.toggleCollapsed}>{collapseIcon}</button>
-                <CheckboxElement
-                  isHeader={true}
-                  labelText={item.heading}
-                  localStoragePath={storagePath.concat(["checked"])}
-                  fgColor={item.fgColor}
-                  bgColor={item.bgColor}
-                />
-                {displayedItems}
-              </div>
+              <HeadingedRecursiveCheckboxyThing
+                heading={item.heading}
+                items={item.items}
+                topLevelStoragePath={topLevelStoragePath}
+                fgColor={item.fgColor}
+                bgColor={item.bgColor}
+              />
             );
           } else {
             console.log("WHOOPS");
