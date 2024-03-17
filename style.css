@@ -79,6 +79,7 @@ ul {
   list-style-type: none;
 }
 .checkbox-ul {
+  padding-left: 0.6em;
 }
 .checkbox-ul-toplevel {
   padding-left: 0px;
