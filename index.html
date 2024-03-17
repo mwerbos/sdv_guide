@@ -1,35 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap"
+      rel="stylesheet"
+    />
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="react_container"></div>
 
-<link href="style.css" rel="stylesheet" type="text/css" media="all" />
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
 
-</head>
-<body>
-
-<div id="react_container"></div>
-
-<!-- Load React. -->
-<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-<script
-	src="https://unpkg.com/react@18/umd/react.development.js"
-	crossorigin
-></script>
-<script
-	src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-	crossorigin
-></script>
-
-<script type="text/javascript" src="shared.js"></script>
-<script type="text/javascript" src="bundles.js"></script>
-<script type="text/babel" src="sdv.jsx"></script>
-
-</body>
+    <script type="text/javascript" src="shared.js"></script>
+    <script type="text/javascript" src="bundles.js"></script>
+    <script type="text/babel" src="sdv.jsx"></script>
+  </body>
 </html>
