@@ -19,6 +19,10 @@ display: grid;
 width: fit-content;
 }
 
+.pretty-label-header {
+width: auto;
+}
+
 .pretty-label-span {
 grid-column: 2;
 grid-row: 1;
@@ -29,7 +33,6 @@ border: 1px solid;
 margin: 0.5em;
 padding: 0.5em;
 border-radius: 0.2em;
-width: fit-content;
 background-color: #eee;
 color: #888;
 }

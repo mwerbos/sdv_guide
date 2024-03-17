@@ -8,9 +8,11 @@ function makeId(labelText) {
 
 class CheckboxElement extends React.Component {
 	constructor(props) {
-		// this.localStoragePath (list of strings, at least 1 long)
-		// this.bgColor (string), this.fgColor (string)
-		// this.labelText (string)
+    // props:
+		// localStoragePath (list of strings, at least 1 long)
+		// bgColor (string), fgColor (string)
+		// labelText (string)
+    // isHeader (bool)
 		super(props);
     this.id = makeId(this.props.labelText);
 		this.state = { checked: false };
@@ -36,9 +38,10 @@ class CheckboxElement extends React.Component {
         backgroundColor: this.props.bgColor,
         borderColor: this.props.fgColor
       };
+    let labelClass = this.props.isHeader ? "pretty-label pretty-label-header" : "pretty-label";
 		return (<li
 			className="pretty-li">
-        <label htmlFor={this.id} style={labelStyle} className="pretty-label">
+        <label htmlFor={this.id} style={labelStyle} className={labelClass}>
 				<input type="checkbox"
 					id={this.id}
 					name={this.props.labelText}
@@ -69,12 +72,12 @@ class RecursiveCheckboxContainer extends React.Component {
 			{this.props.container.map((item) => {
 				if (typeof item === 'string') {
 					let storagePath = topLevelStoragePath.concat([makeId(item), 'checked']);
-					return <CheckboxElement labelText={item} localStoragePath={storagePath} fgColor={this.props.fgColor} bgColor={this.props.bgColor} />;
+					return <CheckboxElement isHeader={false} labelText={item} localStoragePath={storagePath} fgColor={this.props.fgColor} bgColor={this.props.bgColor} />;
 				} else if (typeof item === 'object') {
 					let headingId = makeId(item.heading);
 					let storagePath = topLevelStoragePath.concat([headingId]);
 					return (<div className="recursive-div">
-						<CheckboxElement labelText={item.heading} localStoragePath={storagePath.concat(['checked'])} fgColor={item.fgColor} bgColor={item.bgColor} />
+						<CheckboxElement isHeader={true} labelText={item.heading} localStoragePath={storagePath.concat(['checked'])} fgColor={item.fgColor} bgColor={item.bgColor} />
 						<RecursiveCheckboxContainer container={item.items} localStoragePath={storagePath} fgColor={item.fgColor} bgColor={item.bgColor} />
 					</div>);
 				} else {
