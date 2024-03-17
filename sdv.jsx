@@ -89,7 +89,9 @@ class HeadingedRecursiveCheckboxyThing extends React.Component {
     );
     return (
       <div className="recursive-div">
-        <button onClick={this.toggleCollapsed}>{collapseIcon}</button>
+        <button onClick={this.toggleCollapsed} className="collapse-button">
+          {collapseIcon}
+        </button>
         <CheckboxElement
           isHeader={true}
           labelText={this.props.heading}
