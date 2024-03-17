@@ -8,19 +8,23 @@ padding-top: 0px;
 
 .pretty-li {
 height: 3em;
-border: 1px solid red;
 }
 
-.pretty-checkbox + label {
+.pretty-label {
 border: 3px solid black;
 margin: 0.5em;
 padding: 0.5em;
-padding-left: 1.5em;
 border-radius: 0.2em;
-display: inline;
+display: grid;
+width: fit-content;
 }
 
-.pretty-checkbox:checked + label {
+.pretty-label-span {
+grid-column: 2;
+grid-row: 1;
+}
+
+label:has(> .pretty-checkbox:checked) {
 border: 1px solid;
 margin: 0.5em;
 padding: 0.5em;
@@ -39,24 +43,24 @@ height: 1.15em;
 border: 0.15em solid currentColor;
 border-radius: 0.15em;
 transform: translateY(-0.075em);
-margin-top: 0.5em;
 display: grid;
+grid-column: 1;
 place-content: center;
 }
 
 .pretty-checkbox::before {
-  content: "";
-  width: 0.65em;
-  height: 0.65em;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em currentColor;
-  transform-origin: bottom left;
-  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+content: "";
+width: 0.65em;
+height: 0.65em;
+transform: scale(0);
+transition: 120ms transform ease-in-out;
+box-shadow: inset 1em 1em currentColor;
+transform-origin: bottom left;
+clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
 .pretty-checkbox:checked::before {
-  transform: scale(1);
+transform: scale(1);
 }
 
 #checkbox-wrapper {
