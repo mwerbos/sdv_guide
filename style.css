@@ -6,24 +6,57 @@ background-color: #eee;
 padding-top: 0px;
 }
 
+.pretty-li {
+height: 3em;
+border: 1px solid red;
+}
+
 .pretty-checkbox + label {
-border: 1px solid black;
+border: 3px solid black;
 margin: 0.5em;
 padding: 0.5em;
+padding-left: 1.5em;
 border-radius: 0.2em;
-width: fit-content;
+display: inline;
 }
 
 .pretty-checkbox:checked + label {
-border: 3px solid;
+border: 1px solid;
 margin: 0.5em;
 padding: 0.5em;
 border-radius: 0.2em;
 width: fit-content;
+background-color: #eee;
+color: #888;
 }
 
 .pretty-checkbox {
-display: none;
+appearance: none;
+font: inherit;
+color: currentColor;
+width: 1.15em;
+height: 1.15em;
+border: 0.15em solid currentColor;
+border-radius: 0.15em;
+transform: translateY(-0.075em);
+margin-top: 0.5em;
+display: grid;
+place-content: center;
+}
+
+.pretty-checkbox::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em currentColor;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.pretty-checkbox:checked::before {
+  transform: scale(1);
 }
 
 #checkbox-wrapper {

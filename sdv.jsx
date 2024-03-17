@@ -30,6 +30,21 @@ class CheckboxElement extends React.Component {
 	}
 
 	render() {
+    let styledLabel = 
+				(<label
+          htmlFor={this.id}
+          style={{
+            color: this.props.fgColor,
+            backgroundColor: this.props.bgColor,
+            borderColor: this.props.fgColor
+          }}>
+        {this.props.labelText}</label>);
+    let plainLabel = 
+				(<label
+          htmlFor={this.id}>
+        {this.props.labelText}</label>);
+    let label = this.state.checked ? plainLabel : styledLabel;
+    // TODO: Put the checkbox INSIDE the label, and then directly style/use that.
 		return (<li
 			className="pretty-li">
 				<input type="checkbox"
@@ -39,14 +54,7 @@ class CheckboxElement extends React.Component {
 					checked={this.state.checked}
           className="pretty-checkbox"
 				></input>
-				<label
-          htmlFor={this.id}
-          style={{
-            color: this.props.fgColor,
-            backgroundColor: this.props.bgColor,
-            borderColor: this.props.fgColor
-          }}>
-        {this.props.labelText}</label>
+        {label}
 		</li>);
 	}
 }
