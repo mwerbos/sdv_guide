@@ -17,6 +17,7 @@ body {
   border-radius: 0.2em;
   display: grid;
   width: fit-content;
+  grid-template-columns: minmax(auto, 2em) auto;
 }
 
 .pretty-label-header {
