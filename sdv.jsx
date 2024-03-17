@@ -64,8 +64,15 @@ class RecursiveCheckboxContainer extends React.Component {
   constructor(props) {
     // this.props.container
     // this.props.localStoragePath
-    // this.fgColor, this.bgColor
+    // this.props.fgColor, this.props.bgColor
     super(props);
+    this.state = { collapsed: false };
+    this.toggleCollapsed = this.toggleCollapsed.bind(this);
+  }
+
+  toggleCollapsed(event) {
+    console.log('collapsing. state: ', this.state.collapsed);
+    this.setState({ collapsed: !this.state.collapsed });
   }
 
   render() {
@@ -93,8 +100,22 @@ class RecursiveCheckboxContainer extends React.Component {
           } else if (typeof item === "object") {
             let headingId = makeId(item.heading);
             let storagePath = topLevelStoragePath.concat([headingId]);
+            let collapseIcon = this.state.collapsed ? "►" : "▼";
+            // TODO: this doesn't work correctly because 'collapsed' is
+            // currently a property of all the same-level headings... so when
+            // you collapse the crafts room, it also collapses all the other
+            // divisions. Ugh!
+            let displayedItems = this.state.collapsed? "" : (
+                <RecursiveCheckboxContainer
+                  container={item.items}
+                  localStoragePath={storagePath}
+                  fgColor={item.fgColor}
+                  bgColor={item.bgColor}
+                />
+            );
             return (
               <div className="recursive-div">
+                <button onClick={this.toggleCollapsed}>{collapseIcon}</button>
                 <CheckboxElement
                   isHeader={true}
                   labelText={item.heading}
@@ -102,12 +123,7 @@ class RecursiveCheckboxContainer extends React.Component {
                   fgColor={item.fgColor}
                   bgColor={item.bgColor}
                 />
-                <RecursiveCheckboxContainer
-                  container={item.items}
-                  localStoragePath={storagePath}
-                  fgColor={item.fgColor}
-                  bgColor={item.bgColor}
-                />
+                {displayedItems}
               </div>
             );
           } else {
