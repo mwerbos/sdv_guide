@@ -61,6 +61,7 @@ class CheckboxElement extends React.Component {
 }
 
 class HeadingedRecursiveCheckboxyThing extends React.Component {
+  // TODO: store collapsed states in localStorage.
   constructor(props) {
     // heading, items, topLevelStoragePath, fgColor, bgColor
     super(props);
@@ -69,7 +70,6 @@ class HeadingedRecursiveCheckboxyThing extends React.Component {
   }
 
   toggleCollapsed(event) {
-    console.log("collapsing. state: ", this.state.collapsed);
     this.setState({ collapsed: !this.state.collapsed });
   }
 
@@ -162,6 +162,7 @@ class MainContainer extends React.Component {
   render() {
     return (
       <div id="checkbox-wrapper">
+        <h1 id="header">Stardew Valley Progress Tracker</h1>
         <RecursiveCheckboxContainer
           topLevel={true}
           container={bundles}

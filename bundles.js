@@ -120,7 +120,60 @@ const bundles = [
       },
     ],
   },
-  // TODO: Fish Tank
+  {
+    heading: "Fish Tank",
+    bgColor: "#fff",
+    fgColor: "#000",
+    items: [
+      {
+        heading: "River Fish Bundle",
+        bgColor: "#96D8FF",
+        fgColor: "#003E64",
+        items: ["Sunfish", "Catfish", "Shad", "Tiger Trout"],
+      },
+      {
+        heading: "Lake Fish Bundle",
+        bgColor: "#96D8FF",
+        fgColor: "#003E64",
+        items: ["Largemouth Bass", "Carp", "Bullhead", "Sturgeon"],
+      },
+      {
+        heading: "Ocean Fish Bundle",
+        bgColor: "#96D8FF",
+        fgColor: "#003E64",
+        items: ["Sardine", "Tuna", "Red Snapper", "Tilapia"],
+      },
+      {
+        heading: "Night Fishing Bundle",
+        bgColor: "#96D8FF",
+        fgColor: "#003E64",
+        items: ["Walleye", "Bream", "Eel"],
+      },
+      {
+        heading: "Crab Pot Bundle (5)",
+        bgColor: "#96D8FF",
+        fgColor: "#003E64",
+        items: [
+          "Lobster",
+          "Crayfish",
+          "Crab",
+          "Cockle",
+          "Mussel",
+          "Shrimp",
+          "Snail",
+          "Periwinkle",
+          "Oyster",
+          "Clam",
+        ],
+      },
+      {
+        heading: "Specialty Fish Bundle",
+        bgColor: "#96D8FF",
+        fgColor: "#003E64",
+        items: ["Pufferfish", "Ghostfish", "Sandfish", "Woodskip"],
+      },
+    ],
+  },
   {
     heading: "Boiler Room",
     bgColor: "#fff",
@@ -197,5 +250,10 @@ const bundles = [
       },
     ],
   },
-  // TODO: Vault
+  {
+    heading: "Vault",
+    bgColor: "#fff",
+    fgColor: "#000",
+    items: ["2,500 Bundle", "5,000 Bundle", "10,000 Bundle", "25,000 Bundle"],
+  },
 ];
