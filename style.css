@@ -122,3 +122,19 @@ ul {
   font-size: 2em;
   color: #846ad5;
 }
+.note-wrapper {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+.note-wrapper .pretty-li {
+  grid-row: 1;
+  grid-column: 1;
+}
+.note {
+  grid-column: 2;
+  grid-row: 1;
+  padding-top: 1em;
+  color: #777;
+  font-family: "sans";
+  font-size: 0.9em;
+}

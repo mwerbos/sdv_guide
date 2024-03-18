@@ -160,6 +160,23 @@ class RecursiveCheckboxContainer extends React.Component {
                 bgColor={this.props.bgColor}
               />
             );
+          } else if (typeof item === "object" && "note" in item) {
+            let storagePath = topLevelStoragePath.concat([
+              makeId(item.labelText),
+              "checked",
+            ]);
+            return (
+              <div className="note-wrapper">
+                <CheckboxElement
+                  isHeader={false}
+                  labelText={item.labelText}
+                  localStoragePath={storagePath}
+                  fgColor={this.props.fgColor}
+                  bgColor={this.props.bgColor}
+                />
+                <span className="note">{item.note}</span>
+              </div>
+            );
           } else if (typeof item === "object") {
             return (
               <HeadingedRecursiveCheckboxyThing
