@@ -8,6 +8,8 @@ function makeId(labelText) {
 
 const defaultFgColor = "#846ad5";
 const defaultBgColor = "#f4daff";
+const checkedFgColor = "#bbb";
+const checkedBgColor = "#f5f5f5";
 
 class CheckboxElement extends React.Component {
   constructor(props) {
@@ -36,7 +38,11 @@ class CheckboxElement extends React.Component {
 
   render() {
     let labelStyle = this.state.checked
-      ? {}
+      ? {
+          color: checkedFgColor,
+          backgroundColor: checkedBgColor,
+          borderColor: checkedFgColor,
+        }
       : {
           color: this.props.fgColor || defaultFgColor,
           backgroundColor: this.props.bgColor || defaultBgColor,
@@ -65,11 +71,13 @@ class CheckboxElement extends React.Component {
 
 class HeadingedRecursiveCheckboxyThing extends React.Component {
   // TODO: store collapsed states in localStorage.
-  // TODO: make collapsed groups still exist so that sub-collapse is preserved
-  // over super-collapse.
+  // TODO: make collapsed groups still exist so that sub-collapse is
+  // preserved over super-collapse.
   constructor(props) {
     // heading, items, topLevelStoragePath, fgColor, bgColor
     super(props);
+    // TODO: move headerIsChecked into this component so it can
+    // access it to determine color of collapse button??? ughhhh.
     this.state = { collapsed: false };
     this.toggleCollapsed = this.toggleCollapsed.bind(this);
   }
@@ -94,30 +102,17 @@ class HeadingedRecursiveCheckboxyThing extends React.Component {
     );
     let headerStoragePath = storagePath.concat(["checked"]);
     let isChecked = getFromStorage(headerStoragePath);
-    // TODO: remove || logic in CheckboxElement?
-    let thisFgColor = isChecked ? "#bbb" : this.props.fgColor || defaultFgColor;
-    let thisBgColor = isChecked
-      ? "#f5f5f5"
-      : this.props.bgColor || defaultBgColor;
     return (
       <div className="recursive-div">
-        <button
-          onClick={this.toggleCollapsed}
-          className="collapse-button"
-          style={{
-            color: thisFgColor,
-            backgroundColor: thisBgColor,
-            borderColor: thisFgColor,
-          }}
-        >
+        <button onClick={this.toggleCollapsed} className="collapse-button">
           {collapseIcon}
         </button>
         <CheckboxElement
           isHeader={true}
           labelText={this.props.heading}
           localStoragePath={headerStoragePath}
-          fgColor={thisFgColor}
-          bgColor={thisBgColor}
+          fgColor={this.props.fgColor}
+          bgColor={this.props.bgColor}
         />
         {displayedItems}
       </div>
