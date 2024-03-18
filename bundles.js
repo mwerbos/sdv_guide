@@ -162,9 +162,18 @@ const bundles = [
         fgColor: "#003E64",
         items: [
           { labelText: "Sardine", note: "Ocean; 6am-7pm; Spring/Fall/Winter" },
-          { labelText: "Tuna", note: "Ocean/Ginger Island; 6am-7pm; Summer/Winter" },
-          { labelText: "Red Snapper", note: "Ocean; 6am-7pm; Summer/Fall; Rain" },
-          { labelText: "Tilapia", note: "Ocean/Ginger Island; 6am-2pm; Summer/Fall" },
+          {
+            labelText: "Tuna",
+            note: "Ocean/Ginger Island; 6am-7pm; Summer/Winter",
+          },
+          {
+            labelText: "Red Snapper",
+            note: "Ocean; 6am-7pm; Summer/Fall; Rain",
+          },
+          {
+            labelText: "Tilapia",
+            note: "Ocean/Ginger Island; 6am-2pm; Summer/Fall",
+          },
         ],
       },
       {
@@ -172,9 +181,12 @@ const bundles = [
         bgColor: "#96D8FF",
         fgColor: "#003E64",
         items: [
-          { labelText: "Walleye", note: "" },
-          { labelText: "Bream", note: "" },
-          { labelText: "Eel", note: "" },
+          {
+            labelText: "Walleye",
+            note: "River/Mountain Lake/Forest Pond; 12pm-2am; Fall; Rain",
+          },
+          { labelText: "Bream", note: "River; 6pm-2am" },
+          { labelText: "Eel", note: "Ocean; 4pm-2am; Spring/Fall; Rain" },
         ],
       },
       {
@@ -199,10 +211,10 @@ const bundles = [
         bgColor: "#96D8FF",
         fgColor: "#003E64",
         items: [
-          { labelText: "Pufferfish", note: "" },
-          { labelText: "Ghostfish", note: "" },
-          { labelText: "Sandfish", note: "" },
-          { labelText: "Woodskip", note: "" },
+          { labelText: "Pufferfish", note: "Ocean; 12pm-4pm; Summer; Sun" },
+          { labelText: "Ghostfish", note: "The Mines" },
+          { labelText: "Sandfish", note: "The Desert; 6am-8pm" },
+          { labelText: "Woodskip", note: "Secret Woods" },
         ],
       },
     ],
