@@ -70,20 +70,30 @@ class CheckboxElement extends React.Component {
 }
 
 class HeadingedRecursiveCheckboxyThing extends React.Component {
-  // TODO: store collapsed states in localStorage.
-  // TODO: make collapsed groups still exist so that sub-collapse is
-  // preserved over super-collapse.
   constructor(props) {
     // heading, items, topLevelStoragePath, fgColor, bgColor
     super(props);
-    // TODO: move headerIsChecked into this component so it can
-    // access it to determine color of collapse button??? ughhhh.
+    let headingId = makeId(this.props.heading);
+    let alreadyCollapsed = getFromStorage(
+      this.props.topLevelStoragePath.concat([headingId, "collapsed"]),
+    );
     this.state = { collapsed: false };
+    if (!!alreadyCollapsed) {
+      this.state = { collapsed: true };
+    }
     this.toggleCollapsed = this.toggleCollapsed.bind(this);
   }
 
   toggleCollapsed(event) {
     this.setState({ collapsed: !this.state.collapsed });
+  }
+
+  componentDidUpdate() {
+    let headingId = makeId(this.props.heading);
+    putInStorage(
+      this.props.topLevelStoragePath.concat([headingId, "collapsed"]),
+      this.state.collapsed,
+    );
   }
 
   render() {
