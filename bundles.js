@@ -1,8 +1,6 @@
 const bundles = [
   {
     heading: "Crafts Room",
-    bgColor: "#fff",
-    fgColor: "#000",
     items: [
       {
         heading: "Spring Foraging Bundle",
@@ -54,8 +52,6 @@ const bundles = [
   },
   {
     heading: "Pantry",
-    bgColor: "#fff",
-    fgColor: "#000",
     items: [
       {
         heading: "Spring Crops Bundle",
@@ -122,8 +118,6 @@ const bundles = [
   },
   {
     heading: "Fish Tank",
-    bgColor: "#fff",
-    fgColor: "#000",
     items: [
       {
         heading: "River Fish Bundle",
@@ -176,8 +170,6 @@ const bundles = [
   },
   {
     heading: "Boiler Room",
-    bgColor: "#fff",
-    fgColor: "#000",
     items: [
       {
         heading: "Blacksmith's Bundle",
@@ -201,8 +193,6 @@ const bundles = [
   },
   {
     heading: "Bulletin Board",
-    bgColor: "#fff",
-    fgColor: "#000",
     items: [
       {
         heading: "Chef's Bundle",
@@ -252,8 +242,6 @@ const bundles = [
   },
   {
     heading: "Vault",
-    bgColor: "#fff",
-    fgColor: "#000",
     items: ["2,500 Bundle", "5,000 Bundle", "10,000 Bundle", "25,000 Bundle"],
   },
 ];
