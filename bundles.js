@@ -72,7 +72,7 @@ const bundles = [
         items: ["Corn", "Eggplant", "Pumpkin", "Yam"],
       },
       {
-        heading: "Quality Crops Bundle",
+        heading: "Quality Crops Bundle (3)",
         bgColor: "#FDFF00",
         fgColor: "#564E00",
         items: [
